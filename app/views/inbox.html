@@ -1,0 +1,49 @@
+<div id="list" class="pure-u-1"> <repeat group="{{ @email_array }}" value="{{ @emails }}"> <a href="/inbox/{{ @emails.id }}">
+  <div class="email-item 
+    <check if="{{ @email_id == @emails.id }}">email-item-selected
+    </check>
+    <check if="{{ @emails.viewed == 0 }}">email-item-unread</check>
+    pure-g
+    ">
+    <div class="pure-u-3-4">
+      <h5 class="email-name">{{ @emails.from }}</h5>
+      <h4 class="email-subject">{{ @emails.subject }}</h4>
+      <p class="email-desc"> {{ @emails.excerpt }} </p>
+    </div>
+  </div>
+  </a> </repeat> </div>
+<div id="main" class="pure-u-1">
+  <check if="{{ @email_content }}">
+    <true>
+      <check if="{{ @error }}">
+        <true>{{ @error }}</true>
+        <false>
+          <div class="email-content">
+            <div class="email-content-header pure-g">
+              <div class="pure-u-1-2">
+                <h1 class="email-content-title">{{ @email_subject }}</h1>
+                <p class="email-content-subtitle"> From <a>{{ @email_from }}</a></span> </p>
+              </div>
+              <div class="email-content-controls pure-u-1-2"> <a href="/inbox/{{ @email_id }}/markunread">
+                <button class="secondary-button pure-button">Mark as Unread</button>
+                </a> <a href="/inbox/{{ @email_id }}/delete">
+                <button class="secondary-button pure-button">Delete</button>
+                </a> </div>
+            </div>
+            <div class="email-content-body">
+              <p> {{ @email_content | raw }} </p>
+            </div>
+          </div>
+        </false>
+      </check>
+    </true>
+    <false>
+      <div class="email-content-body">
+        <h1>Inbox</h1>
+        Please select an email. </div>
+    </false>
+  </check>
+</div>
+</true>
+</check>
+</div>

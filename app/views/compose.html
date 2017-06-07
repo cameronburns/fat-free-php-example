@@ -1,0 +1,30 @@
+<div class="pure-u-1 email-content-body">
+  <h1>Compose Email</h1>
+  <form method="post" action="/new" class="pure-form pure-form-aligned">
+    <fieldset>
+      <div class="pure-control-group">
+        <label for="toid">To</label>
+        <select name="toid" id="toid" style="width: 50%;" required>
+        <option selected disabled>Please select...</option>
+          <repeat group="{{ @all_users }}" value=" {{ @user }}">
+          <option value="{{ @user.id }}">{{ @user.username }}</option>
+          </repeat>
+        </select>
+      </div>
+      <div class="pure-control-group">
+        <label for="subject">Subject</label>
+        <input name="subject" id="subject" type="text" placeholder="Subject" style="width: 50%;" required>
+      </div>
+      <div class="pure-control-group">
+        <label for="content">Message</label>
+        <textarea name="content" id="content" placeholder="Enter something here..." style="width: 50%; height: 200px;" required></textarea>
+      </div>
+      <div class="pure-controls">
+        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+        <check if="{{ @sent }}">
+          <h3>Message Sent!</h3>
+        </check>
+      </div>
+    </fieldset>
+  </form>
+</div>
